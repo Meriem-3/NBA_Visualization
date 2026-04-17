@@ -12,7 +12,6 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
-#print(" API CHARGÉE : VERSION AVEC /api/stats ")
 
 @app.route("/api/data")
 def api_data():
