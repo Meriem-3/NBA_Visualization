@@ -110,12 +110,5 @@ Montre la dispersion des performances selon les tranches d’âge.(pas trop util
 - SECRET_KEY stockée dans `.env`   
 - ORM SQLAlchemy → protège contre les injections SQL  
 
----
-
-## 🧪 Tests
-
-Un test minimal est fourni dans `tests/test_api.py`.
-
-Pour lancer les tests :
 
 
