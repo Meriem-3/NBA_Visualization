@@ -4,7 +4,6 @@ import requests
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
-#from app.data_processing import age_group
 
 st.set_page_config(page_title="NBA Dashboard", layout="wide")
 
@@ -161,5 +160,57 @@ if st.button("Moyenne des points par groupe d'âge"):
         title="Points moyens par groupe d'âge",
         text_auto=True
     )
+
+    st.plotly_chart(fig)
+
+#Top 5 collèges
+if st.button("Top 5 collèges (points moyens)"):
+
+    st.subheader("Top 5 collèges par points moyens")
+
+    top_colleges = (
+        filtered_df.groupby("college")["pts"]
+        .mean()
+        .sort_values(ascending=False)
+        .head(5)
+        .reset_index()
+    )
+
+    fig = px.bar(
+        top_colleges,
+        x="college",
+        y="pts",
+        color="college",
+        title="Top 5 collèges par points moyens",
+        text_auto=True
+    )
+
+    st.plotly_chart(fig)
+
+
+#Top 5 équipes
+if st.button("Top 5 équipes (points moyens)"):
+
+    st.subheader("Top 5 équipes par points moyens")
+
+    top_teams = (
+        filtered_df.groupby("team_abbreviation")["pts"]
+        .mean()
+        .sort_values(ascending=False)
+        .head(5)
+        .round(2)
+        .reset_index()
+    )
+
+    fig = px.bar(
+        top_teams,
+        x="team_abbreviation",
+        y="pts",
+        color="team_abbreviation",
+        title="Top 5 équipes par points moyens",
+        text_auto=True
+    )
+
+    fig.update_layout(xaxis={'categoryorder':'total descending'})
 
     st.plotly_chart(fig)
